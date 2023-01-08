@@ -10,7 +10,7 @@ let imgs = [
   "https://greenlightinternational.tv/wp-content/uploads/2019/04/superboat.jpg",
 ];
 let n = imgs.length;
-let current = n - 1;
+let current = 0;
 let closedWidth = Math.floor(window.innerWidth / 7);
 let bg = "";
 let fg = "";
@@ -19,7 +19,7 @@ onMounted(() => {
   bg = document.getElementById("bg");
   fg = document.getElementById("fg");
   n = imgs.length;
-  current = n - 1;
+  current = 0;
   closedWidth = Math.floor(window.innerWidth / 7);
 
   for (let i = 0; i < n; i++) {
@@ -91,26 +91,12 @@ onMounted(() => {
       });
       /*---------------------------------------*/
       //GSAP general background
-      bg.appendChild(document.getElementById("bgImg" + current));
-      for (let i = 0; i < imgs.length; i++) {
-        if (Number(e.currentTarget.id.substr(1) == current)) {
-          gsap.fromTo(
-            "#bgImg" + current,
-            { opacity: 0 },
-            { opacity: 1, duration: 2, ease: "power1.inOut" }
-          );
-        } else {
-          gsap.fromTo(
-            "#bgImg" + current,
-            { opacity: 1 },
-            { opacity: 0, duration: 1, ease: "power1.inOut" }
-          );
-        }
-      }
+      bg.insertBefore(document.getElementById("bgImg" + current), bg.firstChild);
+      
       gsap.fromTo(
         "#bgImg" + current,
         { opacity: 0 },
-        { opacity: 1, duration: 2, ease: "power1.inOut" }
+        { opacity: 1, duration: 0.3, ease: "circ" }
       );
       //GSAP size
       gsap.fromTo(
