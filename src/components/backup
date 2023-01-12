@@ -1,0 +1,42 @@
+import { gsap } from "gsap";
+import { onMounted } from "vue";
+import { ref } from "vue";
+
+const colorBar = ref("#444444");
+let bar = "";
+
+onMounted(() => {
+  //Asignamos la variable bar a la barra.
+  bar = document.querySelector(".bar-filler");
+
+  //Le aplicamos un tamaño concreto a la barra
+  bar.style.width = "50vw";
+
+  //Creamos la animación de la barra de dentro
+  gsap.to(bar, {
+    duration: 1,
+    yoyo: true, // yoyo: hace que la animacion vuelva a su estado inicial al finalizar
+    repeat: -1, // repeat: -1 indica que la animacion se repetira infinitamente
+    scaleX: 1.05, // escalado en el eje x
+    // scaleY: 0.95, // escalado en el eje y
+    ease: "slow", // tipo de easing utilizado
+  });
+
+  //Creamos las variables de los colores en función a la longitud de la barra
+  let newColorR = 255 - (bar.getBoundingClientRect().width / 400) * 240;
+  let newColorG = 40 + (bar.getBoundingClientRect().width / 400) * 215;
+  let newColorB = 255;
+
+  //Lo pasamos a hexadecimal
+  newColorR = Math.round(newColorR).toString(16);
+  newColorG = Math.round(newColorG).toString(16);
+  newColorB = Math.round(newColorB).toString(16);
+
+  //Calculamos el valor que vamos a inyectar en la variable de backgroundColor
+  colorBar.value = "#" + newColorR + newColorG + newColorB;
+  console.log(colorBar.value);
+  //Le aplicamos el color a la barra
+  bar.style.backgroundColor = colorBar.value;
+});
+
+//

@@ -7,7 +7,17 @@ const router = createRouter({
     {
       path: "/",
       name: "home",
-      component: () => import("../views/HomeView.vue")
+      component: () => import("../views/StaticCV.vue"),
+    },
+    {
+      path: "/select",
+      name: "select",
+      component: () => import("../views/SelectCV.vue"),
+    },
+    {
+      path: "/easy-mode",
+      name: "easy",
+      component: () => import("../views/EasyCV.vue"),
     },
     {
       path: "/yate-prueba/:id?",

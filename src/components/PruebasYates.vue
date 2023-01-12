@@ -66,7 +66,7 @@ function gotoPage(event, url) {
           />
           <label class="tab" for="management">CHARTERS</label>
           <div class="tab-panel" style="width: 90vw">
-            <input @click="showGrey" class="toggle-checkbox" type="checkbox" id="a" />
+            <input class="toggle-checkbox" type="checkbox" id="a" />
             <label class="element" for="a">
               <h3>
                 <span class="name">Cathy</span>
